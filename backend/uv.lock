@@ -17,13 +17,19 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "django" },
+    { name = "django-extensions" },
+    { name = "django-simpleui" },
     { name = "djangorestframework" },
+    { name = "djangorestframework-simplejwt" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.2.8" },
+    { name = "django-extensions", specifier = ">=4.1" },
+    { name = "django-simpleui", specifier = ">=2025.6.24" },
     { name = "djangorestframework", specifier = ">=3.16.1" },
+    { name = "djangorestframework-simplejwt", specifier = ">=5.5.1" },
 ]
 
 [[package]]
@@ -41,6 +47,27 @@ wheels = [
 ]
 
 [[package]]
+name = "django-extensions"
+version = "4.1"
+source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/6d/b3/ed0f54ed706ec0b54fd251cc0364a249c6cd6c6ec97f04dc34be5e929eac/django_extensions-4.1.tar.gz", hash = "sha256:7b70a4d28e9b840f44694e3f7feb54f55d495f8b3fa6c5c0e5e12bcb2aa3cdeb" }
+wheels = [
+    { url = "https://mirrors.aliyun.com/pypi/packages/64/96/d967ca440d6a8e3861120f51985d8e5aec79b9a8bdda16041206adfe7adc/django_extensions-4.1-py3-none-any.whl", hash = "sha256:0699a7af28f2523bf8db309a80278519362cd4b6e1fd0a8cd4bf063e1e023336" },
+]
+
+[[package]]
+name = "django-simpleui"
+version = "2025.6.24"
+source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/97/d7/57ac337258399c33c28b5d960407e2c640f22a2edabf2e894d1b51e25fee/django-simpleui-2025.6.24.tar.gz", hash = "sha256:95d1224454a0531071ec7fcd1c6f57acf90e85160c72d6b1d23d538c3a92f4ed" }
+
+[[package]]
 name = "djangorestframework"
 version = "3.16.1"
 source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
@@ -50,6 +77,29 @@ dependencies = [
 sdist = { url = "https://mirrors.aliyun.com/pypi/packages/8a/95/5376fe618646fde6899b3cdc85fd959716bb67542e273a76a80d9f326f27/djangorestframework-3.16.1.tar.gz", hash = "sha256:166809528b1aced0a17dc66c24492af18049f2c9420dbd0be29422029cfc3ff7" }
 wheels = [
     { url = "https://mirrors.aliyun.com/pypi/packages/b0/ce/bf8b9d3f415be4ac5588545b5fcdbbb841977db1c1d923f7568eeabe1689/djangorestframework-3.16.1-py3-none-any.whl", hash = "sha256:33a59f47fb9c85ede792cbf88bde71893bcda0667bc573f784649521f1102cec" },
+]
+
+[[package]]
+name = "djangorestframework-simplejwt"
+version = "5.5.1"
+source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
+dependencies = [
+    { name = "django" },
+    { name = "djangorestframework" },
+    { name = "pyjwt" },
+]
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/a8/27/2874a325c11112066139769f7794afae238a07ce6adf96259f08fd37a9d7/djangorestframework_simplejwt-5.5.1.tar.gz", hash = "sha256:e72c5572f51d7803021288e2057afcbd03f17fe11d484096f40a460abc76e87f" }
+wheels = [
+    { url = "https://mirrors.aliyun.com/pypi/packages/60/94/fdfb7b2f0b16cd3ed4d4171c55c1c07a2d1e3b106c5978c8ad0c15b4a48b/djangorestframework_simplejwt-5.5.1-py3-none-any.whl", hash = "sha256:2c30f3707053d384e9f315d11c2daccfcb548d4faa453111ca19a542b732e469" },
+]
+
+[[package]]
+name = "pyjwt"
+version = "2.10.1"
+source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953" }
+wheels = [
+    { url = "https://mirrors.aliyun.com/pypi/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb" },
 ]
 
 [[package]]
