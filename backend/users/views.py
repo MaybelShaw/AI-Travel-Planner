@@ -23,9 +23,10 @@ class RegisterView(generics.CreateAPIView):
             return Response(
                 {
                     "message": "用户注册成功",
+                    "user": UserSerializer(user).data,
                     "tokens": {
-                        "refresh": str(refresh),
-                        "access": str(refresh.access_token),
+                        "refresh_token": str(refresh),
+                        "access_token": str(refresh.access_token),
                     },
                 },
                 status=status.HTTP_201_CREATED,

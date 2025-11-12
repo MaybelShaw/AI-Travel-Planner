@@ -1,0 +1,122 @@
+/* Leaflet地图显示修复样式 */
+
+/* 确保地图容器正确显示 */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  background: #f8f9fa;
+  font-family: inherit;
+}
+
+/* 修复瓦片显示问题 */
+.leaflet-tile {
+  max-width: none !important;
+  filter: none !important;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 修复瓦片容器 */
+.leaflet-tile-container {
+  overflow: visible !important;
+}
+
+/* 确保瓦片面板正确显示 */
+.leaflet-tile-pane {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0);
+}
+
+/* 修复地图面板层级 */
+.leaflet-map-pane {
+  z-index: 1 !important;
+  position: relative;
+}
+
+/* 控制组件层级 */
+.leaflet-control-container {
+  z-index: 1000 !important;
+}
+
+/* 修复缩放控制 */
+.leaflet-control-zoom {
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+/* 修复标记显示 */
+.leaflet-marker-icon {
+  margin-left: -12px;
+  margin-top: -41px;
+}
+
+/* 修复弹出框 */
+.leaflet-popup {
+  margin-bottom: 20px;
+}
+
+/* 修复折线显示 */
+.leaflet-interactive {
+  cursor: pointer;
+}
+
+/* 响应式修复 */
+@media (max-width: 768px) {
+  .leaflet-container {
+    touch-action: pan-x pan-y;
+  }
+  
+  .leaflet-control-zoom {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+}
+
+/* 修复加载状态 */
+.leaflet-tile-loaded {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* 修复瓦片网格对齐 */
+.leaflet-layer {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+/* 确保地图在容器中正确居中 */
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 2px 5px;
+  color: #333;
+}
+
+/* 修复自定义图标显示 */
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 修复地图在对话框中的显示 */
+.MuiDialog-paper .leaflet-container {
+  height: 400px !important;
+  min-height: 400px !important;
+}
+
+/* 修复地图在标签页中的显示 */
+.MuiTabPanel-root .leaflet-container {
+  height: 100% !important;
+  min-height: 300px !important;
+}
+
+/* 修复地图重绘问题 */
+.leaflet-fade-anim .leaflet-tile {
+  will-change: opacity;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+  will-change: transform;
+}

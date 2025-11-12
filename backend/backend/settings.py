@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
+    'django_extensions',
     "users",
+    "travel_plans",
 ]
 
 # jwt settings
@@ -61,6 +64,7 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -141,3 +145,42 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Media files (uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# API Key encryption
+from cryptography.fernet import Fernet
+import os
+
+# 生成或获取加密密钥
+API_KEY_ENCRYPTION_KEY = os.environ.get('API_KEY_ENCRYPTION_KEY')
+if not API_KEY_ENCRYPTION_KEY:
+    # 开发环境使用固定密钥（生产环境应该使用环境变量）
+    API_KEY_ENCRYPTION_KEY = b'ZmDfcTF7_60GrrY167zsiPd67pEvs0aGOv2oasOM1Pg='
+
+# 确保密钥是bytes类型
+if isinstance(API_KEY_ENCRYPTION_KEY, str):
+    API_KEY_ENCRYPTION_KEY = API_KEY_ENCRYPTION_KEY.encode()
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# 允许的请求头
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]

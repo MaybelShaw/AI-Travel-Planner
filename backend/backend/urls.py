@@ -22,4 +22,6 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("users.urls")),
+    # expose travel_plans router under /api/ so endpoints are /api/travelplans/
+    path("api/", include("travel_plans.urls")),
 ]
