@@ -1,0 +1,49 @@
+# 使用中国镜像源的 Python 基础镜像
+FROM python:3.12-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 设置环境变量
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# 使用中国镜像源
+RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ && \
+    pip config set global.trusted-host mirrors.aliyun.com
+
+# 安装系统依赖
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装 uv 包管理器
+RUN pip install uv
+
+# 复制项目文件
+COPY backend/pyproject.toml backend/uv.lock* ./
+
+# 创建虚拟环境并安装依赖
+RUN uv venv .venv && \
+    uv sync
+
+# 复制应用代码
+COPY backend/ .
+
+# 创建数据库和静态文件目录
+RUN mkdir -p staticfiles media
+
+# 激活虚拟环境并运行 Django 命令
+RUN . .venv/bin/activate && \
+    python manage.py makemigrations && \
+    python manage.py migrate && \
+    python manage.py collectstatic --noinput
+
+# 暴露端口
+EXPOSE 8000
+
+# 启动命令
+CMD [".venv/bin/python", "-m", "gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "backend.wsgi:application"]
