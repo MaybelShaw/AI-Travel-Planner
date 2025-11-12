@@ -36,14 +36,8 @@ COPY backend/ .
 # 创建数据库和静态文件目录
 RUN mkdir -p staticfiles media
 
-# 激活虚拟环境并运行 Django 命令
-RUN . .venv/bin/activate && \
-    python manage.py makemigrations && \
-    python manage.py migrate && \
-    python manage.py collectstatic --noinput
-
 # 暴露端口
 EXPOSE 8000
 
-# 启动命令
-CMD [".venv/bin/python", "-m", "gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "backend.wsgi:application"]
+# 启动命令 - 在容器启动时运行 Django 命令
+CMD ["/bin/bash", "-c", "source .venv/bin/activate && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && exec gunicorn --bind 0.0.0.0:8000 --workers 3 backend.wsgi:application"]

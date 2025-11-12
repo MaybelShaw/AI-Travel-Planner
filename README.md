@@ -2,6 +2,10 @@
 
 一个基于 Django + React 的旅行规划系统，支持本地开发和 Docker 容器化部署。
 
+## 演示视频
+
+<video controls src="演示视频.mp4" title="Title"></video>
+
 ## 项目结构
 
 ```
